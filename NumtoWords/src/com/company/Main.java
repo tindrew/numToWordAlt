@@ -1,98 +1,60 @@
 package com.company;
 
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
-            numberToWords(100);
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter an integer value");
+        int numberToConvert = scanner.nextInt();
+        scanner.nextLine();
+        numberToWords(numberToConvert);
     }
 
     public static void numberToWords (int number) {
         if (number < 0) {
             System.out.println("Invalid value;");
         }
-        number = reverse(number);
+        //Convert the number to a string and then to a char array and look at each char in turn from left to right
+        char[] reversedNumberString = new StringBuilder(Integer.toString(number)).toString().toCharArray();
 
-        //int originalCount = getDigitCount(number);
-        //int reversedCount = getDigitCount(reverse(number));
-        number = reverse(number);
-        while(number > 0) {
+        StringBuilder convertedNumber = new StringBuilder();
 
-            int separateDigit = number % 10;
-            number = number / 10;
-
-
-
-            switch (separateDigit) {
-                case 0:
-                    System.out.println("Zero");
+        for(char c: reversedNumberString){
+            switch (c) {
+                case '0':
+                    convertedNumber.append("zero ");
                     break;
-                case 1:
-                    System.out.println("One");
+                case '1':
+                    convertedNumber.append("one ");
                     break;
-                case 2:
-                    System.out.println("Two");
+                case '2':
+                    convertedNumber.append("two ");
                     break;
-                case 3:
-                    System.out.println("Three");
+                case '3':
+                    convertedNumber.append("three ");
                     break;
-                case 4:
-                    System.out.println("Four");
+                case '4':
+                    convertedNumber.append("four ");
                     break;
-                case 5:
-                    System.out.println("Five");
+                case '5':
+                    convertedNumber.append("five ");
                     break;
-                case 6:
-                    System.out.println("Six");
+                case '6':
+                    convertedNumber.append("six ");
                     break;
-                case 7:
-                    System.out.println("Se;ven");
+                case '7':
+                    convertedNumber.append("seven ");
                     break;
-                case 8:
-                    System.out.println("Eight");
+                case '8':
+                    convertedNumber.append("eight ");
                     break;
-                case 9:
-                    System.out.println("Nine");
+                case '9':
+                    convertedNumber.append("nine ");
                     break;
-
             }
-
-// a failed attempt at getting this code to print the zeroes of numbers like 100 or 001
-//            if(originalCount != reversedCount) {
-//                for (int i = reversedCount; i < originalCount; i++) {
-//                    System.out.println("Zero");
-//                }
-//            }
+            System.out.println(convertedNumber);
         }
-
     }
-
-
-    public static int reverse(int num) {
-        int reversed = 0;
-        for(;num != 0; num /= 10) {
-            int digit = num % 10;
-            reversed = reversed * 10 + digit;
-        }
-        return reversed;
-    }
-
-
-    public static int getDigitCount (int number) {
-        if (number < 0) {
-            return -1;
-        }
-        if (number == 0) {
-            return 1;
-        }
-        int digits = 0;
-        while (number > 0) {
-            digits += 1;
-            number /= 10;
-        }
-        System.out.println(digits);
-        return digits;
-    }
-
 }
-
